@@ -1,6 +1,6 @@
 #include "Base64.h"
 #include <avr/pgmspace.h>
-const char PROGMEM b64_alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const unsigned char PROGMEM b64_alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 		"abcdefghijklmnopqrstuvwxyz"
 		"0123456789+/";
 
@@ -9,7 +9,7 @@ inline void a3_to_a4(unsigned char * a4, unsigned char * a3);
 inline void a4_to_a3(unsigned char * a3, unsigned char * a4);
 inline unsigned char b64_lookup(char c);
 
-int base64_encode(char *output, char *input, int inputLen) {
+int base64_encode(unsigned char *output, unsigned char *input, int inputLen) {
 	int i = 0, j = 0;
 	int encLen = 0;
 	unsigned char a3[3];
@@ -47,7 +47,7 @@ int base64_encode(char *output, char *input, int inputLen) {
 	return encLen;
 }
 
-int base64_decode(char * output, char * input, int inputLen) {
+int base64_decode(unsigned char * output, unsigned char * input, int inputLen) {
 	int i = 0, j = 0;
 	int decLen = 0;
 	unsigned char a3[3];
@@ -98,7 +98,7 @@ int base64_enc_len(int plainLen) {
 	return (n + 2 - ((n + 2) % 3)) / 3 * 4;
 }
 
-int base64_dec_len(char * input, int inputLen) {
+int base64_dec_len(unsigned char * input, int inputLen) {
 	int i = 0;
 	int numEq = 0;
 	for(i = inputLen - 1; input[i] == '='; i--) {
@@ -121,7 +121,7 @@ inline void a4_to_a3(unsigned char * a3, unsigned char * a4) {
 	a3[2] = ((a4[2] & 0x3) << 6) + a4[3];
 }
 
-inline unsigned char b64_lookup(char c) {
+inline unsigned char b64_lookup(unsigned char c) {
 	if(c >='A' && c <='Z') return c - 'A';
 	if(c >='a' && c <='z') return c - 71;
 	if(c >='0' && c <='9') return c + 4;

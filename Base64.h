@@ -10,7 +10,7 @@
  * 					 and base64 digits
  * 		Notes: This is an extern here but is defined in Base64.c
  */
-extern const char b64_alphabet[];
+extern const unsigned char b64_alphabet[];
 
 /* base64_encode:
  * 		Description:
@@ -26,7 +26,7 @@ extern const char b64_alphabet[];
  * 			2. input must not be null
  * 			3. inputLen must be greater than or equal to 0
  */
-int base64_encode(char *output, char *input, int inputLen);
+int base64_encode(unsigned char *output, unsigned char *input, int inputLen);
 
 /* base64_decode:
  * 		Description:
@@ -44,7 +44,7 @@ int base64_encode(char *output, char *input, int inputLen);
  * 			2. input must not be null
  * 			3. inputLen must be greater than or equal to 0
  */
-int base64_decode(char *output, char *input, int inputLen);
+int base64_decode(unsigned char *output, unsigned char *input, int inputLen);
 
 /* base64_enc_len:
  * 		Description:
@@ -74,6 +74,6 @@ int base64_enc_len(int inputLen);
  * 			1. input must not be null
  * 			2. input must be greater than or equal to zero
  */
-int base64_dec_len(char *input, int inputLen);
+int base64_dec_len(unsigned char *input, int inputLen);
 
 #endif // _BASE64_H
